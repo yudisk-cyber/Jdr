@@ -2,7 +2,7 @@
 
 Appli compagnon de jeu de rôle (PWA, fonctionne hors ligne).
 
-Module actuel : **Star Wars (FFG)**, avec *Aux confins de l'Empire*, *L'Ère de la Rébellion* et *Force et Destinée*.
+Modules : **Star Wars (FFG)** (*Aux confins de l'Empire*, *L'Ère de la Rébellion*, *Force et Destinée*) et **Le Seigneur des Anneaux** (Decipher, système CODA).
 
 - **Persos** : création guidée propre à chaque gamme.
   - Espèce, carrière et spécialisation, avec les rangs offerts.
@@ -25,6 +25,6 @@ Module actuel : **Star Wars (FFG)**, avec *Aux confins de l'Empire*, *L'Ère de 
 2. Va dans Settings → Pages → Branch `main` / root.
 3. Ouvre `https://<ton-compte>.github.io/codex-jdr/` sur le téléphone. Si l'ancienne version reste affichée, ferme et rouvre l'appli : la mise à jour se fait au 2e lancement.
 
-⚠️ Ne mets **jamais** le fichier `index-starwars.json` dans le dépôt : il contient le texte des livres. Il s'importe directement dans l'appli (Règles → Livres).
+⚠️ Ne mets **jamais** les fichiers `index-*.json` dans le dépôt : ils contiennent le texte des livres. Ils s'importent directement dans l'appli (Règles → Livres), un par système.
 
 Données : arbres et véhicules issus du jeu de données communautaire d'OggDude, adversaires de sw-adversaries (stoogoff), noms français relevés dans les livres ou traduits.

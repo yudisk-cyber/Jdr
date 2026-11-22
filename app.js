@@ -7,10 +7,10 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ');
 
 /* ---------- Systèmes ---------- */
-const SYSTEMS = { sw: window.SW_DATA };
+const SYSTEMS = { sw: window.SW_DATA, sda: window.SDA_DATA };
 const SYS_LIST = [
   { id: 'sw', name: 'Star Wars (FFG)' },
-  { id: 'lotr', name: 'Seigneur des Anneaux — bientôt', disabled: true },
+  { id: 'sda', name: 'Le Seigneur des Anneaux (CODA)' },
   { id: 'motw', name: 'Monster of the Week — bientôt', disabled: true },
   { id: 'ygg', name: 'Yggdrasill — bientôt', disabled: true },
 ];
@@ -42,11 +42,13 @@ function go(v) {
   window.scrollTo(0, 0);
 }
 function render() {
+  const M = (window.MODS || {})[S.sys];
+  if (M && M[VIEW]) return M[VIEW]();
   ({ persos: renderPersos, des: renderDice, mj: renderMJ, regles: renderRules })[VIEW]();
 }
 $('#sysSel').innerHTML = SYS_LIST.map(s => `<option value="${s.id}" ${s.disabled ? 'disabled' : ''}>${esc(s.name)}</option>`).join('');
 $('#sysSel').value = S.sys;
-$('#sysSel').onchange = e => { S.sys = e.target.value; save(); render(); };
+$('#sysSel').onchange = e => { S.sys = e.target.value; CUR = null; save(); render(); };
 
 /* =====================================================================
    DÉS NARRATIFS
@@ -1137,7 +1139,7 @@ async function renderRules() {
   if (RTAB === 'books') {
     c.innerHTML = `<div class="card">
       ${idx ? `<p><b>Index installé</b> : ${idx.books.map(b => `${esc(b.name)} (${b.pages} p.)`).join(', ')}</p><p class="mut">${idx.pages.length} pages indexées, stockées sur cet appareil uniquement.</p>` : `<p>Aucun index installé.</p>`}
-      <p class="mut">Importe le fichier <b>index-starwars.json</b> que Claude t'a fourni. Il reste sur ton téléphone et n'est jamais mis en ligne.</p>
+      <p class="mut">Importe le fichier <b>index-${S.sys === 'sw' ? 'starwars' : S.sys}.json</b> que Claude t'a fourni. Il reste sur ton téléphone et n'est jamais mis en ligne.</p>
       <button class="b acc" id="impI" style="width:100%">Importer un fichier d'index</button>
       ${idx ? '<button class="b bad" id="delI" style="width:100%;margin-top:8px">Supprimer l\'index</button>' : ''}
       <input type="file" id="impIF" accept=".json,application/json" hidden></div>`;
