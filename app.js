@@ -1139,7 +1139,7 @@ async function renderRules() {
   if (RTAB === 'books') {
     c.innerHTML = `<div class="card">
       ${idx ? `<p><b>Index installé</b> : ${idx.books.map(b => `${esc(b.name)} (${b.pages} p.)`).join(', ')}</p><p class="mut">${idx.pages.length} pages indexées, stockées sur cet appareil uniquement.</p>` : `<p>Aucun index installé.</p>`}
-      <p class="mut">Importe le fichier <b>index-${S.sys === 'sw' ? 'starwars' : S.sys}.json</b> que Claude t'a fourni. Il reste sur ton téléphone et n'est jamais mis en ligne.</p>
+      <p class="mut">Version de l'appli : <b>v7</b> · 4 jeux.</p><p class="mut">Importe le fichier <b>index-${S.sys === 'sw' ? 'starwars' : S.sys}.json</b> que Claude t'a fourni. Il reste sur ton téléphone et n'est jamais mis en ligne.</p>
       <button class="b acc" id="impI" style="width:100%">Importer un fichier d'index</button>
       ${idx ? '<button class="b bad" id="delI" style="width:100%;margin-top:8px">Supprimer l\'index</button>' : ''}
       <input type="file" id="impIF" accept=".json,application/json" hidden></div>`;
@@ -1234,4 +1234,8 @@ window.closeModal = closeModal;
 
 /* ---------- Démarrage ---------- */
 render();
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => { });
+  let reloaded = !navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!reloaded) { reloaded = true; location.reload(); } });
+}
