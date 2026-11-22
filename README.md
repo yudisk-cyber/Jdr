@@ -2,7 +2,7 @@
 
 Appli compagnon de jeu de rôle (PWA, fonctionne hors ligne).
 
-Modules : **Star Wars (FFG)** (*Aux confins de l'Empire*, *L'Ère de la Rébellion*, *Force et Destinée*) et **Le Seigneur des Anneaux** (Decipher, système CODA).
+Modules : **Star Wars (FFG)** (*Aux confins de l'Empire*, *L'Ère de la Rébellion*, *Force et Destinée*), **Le Seigneur des Anneaux** (Decipher, CODA) et **Yggdrasill** (7e Cercle).
 
 - **Persos** : création guidée propre à chaque gamme.
   - Espèce, carrière et spécialisation, avec les rangs offerts.

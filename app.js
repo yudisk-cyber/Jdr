@@ -7,12 +7,12 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ');
 
 /* ---------- Systèmes ---------- */
-const SYSTEMS = { sw: window.SW_DATA, sda: window.SDA_DATA };
+const SYSTEMS = { sw: window.SW_DATA, sda: window.SDA_DATA, ygg: window.YGG_DATA };
 const SYS_LIST = [
   { id: 'sw', name: 'Star Wars (FFG)' },
   { id: 'sda', name: 'Le Seigneur des Anneaux (CODA)' },
   { id: 'motw', name: 'Monster of the Week — bientôt', disabled: true },
-  { id: 'ygg', name: 'Yggdrasill — bientôt', disabled: true },
+  { id: 'ygg', name: 'Yggdrasill' },
 ];
 
 /* ---------- Stockage ---------- */
